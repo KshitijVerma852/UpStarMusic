@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
-import { Db, Server } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import reducers from './reducers';
 import Routes from './router';
 import mongoose from 'mongoose';
 import './seeds';
 
-mongoose.Promise = Promise;
+mongoose.Promise = global.Promise;
 
 const App = () => {
   const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
@@ -21,16 +21,33 @@ const App = () => {
   );
 };
 
-const db = new Db('upstar_music', new Server('localhost', 27017));
-db.open()
+const mongoUrl = 'mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(mongoUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+client
+  .connect()
   .then(() => {
+    console.log('Connected successfully to MongoDB using MongoClient');
+    const db = client.db('upstar_music');
     window.db = db;
-    mongoose.connect('mongodb://localhost/upstar_music');
-      mongoose.connection
-        .once('open', () => {
-          ReactDOM.render(<App />, document.getElementById('root'));
-        })
-        .on('error', (error) => {
-          console.warn('Warning', error);
-        });
+
+    mongoose.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true,
+    });
+    mongoose.connection
+      .once('open', () => {
+        ReactDOM.render(<App />, document.getElementById('root'));
+      })
+      .on('error', (error) => {
+        console.warn('Warning', error);
+      });
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error using MongoClient:', error);
   });
