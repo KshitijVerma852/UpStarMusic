@@ -8,7 +8,7 @@ const ARTISTS_TO_ADD = 15;
 
 let artistsCollection;
 
-MongoClient.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority', {
+MongoClient.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/upstar_music?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

@@ -21,7 +21,7 @@ const App = () => {
   );
 };
 
-const mongoUrl = 'mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority';
+const mongoUrl = 'mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/upstar_music?retryWrites=true&w=majority';
 const client = new MongoClient(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -34,7 +34,7 @@ client
     const db = client.db('upstar_music');
     window.db = db;
 
-    mongoose.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority', {
+    mongoose.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/upstar_music?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
