@@ -69,9 +69,10 @@ export const searchArtists = (...criteria) => dispatch =>
 
 export const findArtist = id => dispatch =>
   FindArtistProxy(id)
-    .then(artist =>
-      dispatch({ type: FIND_ARTIST, payload: artist })
-    );
+      .then(artist =>
+          dispatch({type: FIND_ARTIST, payload: artist})
+      );
+
 
 export const createArtist = props => dispatch =>
   CreateArtistProxy(props)

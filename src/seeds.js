@@ -8,7 +8,7 @@ const ARTISTS_TO_ADD = 15;
 
 let artistsCollection;
 
-MongoClient.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/?retryWrites=true&w=majority', {
+MongoClient.connect('mongodb+srv://kshitijverma197:UpStarMusic@cluster0.ywrfqmt.mongodb.net/upstar_music?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -35,7 +35,6 @@ function createArtist() {
     name: faker.name.findName(),
     age: randomBetween(15, 45),
     yearsActive: randomBetween(0, 15),
-    image: getArtistImage(),
     genre: getGenre(),
     website: faker.internet.url(),
     netWorth: randomBetween(0, 5000000),
