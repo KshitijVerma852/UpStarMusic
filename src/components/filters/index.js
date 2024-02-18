@@ -1,3 +1,3 @@
-export * from './Picker';
-export * from './Range';
-export * from './Switch';
+export * from "./Picker";
+export * from "./Range";
+export * from "./Switch";
